@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index-BtjTxcZp.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D-JZUZbZ.css">
-  </head>
+    <script type="module" crossorigin src="./assets/index-WVrWB1WF.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DBgDqb7F.css">
+  <link rel="manifest" href="./manifest.webmanifest"></head>
   <body>
     <div id="app">
       <main class="main-content">
@@ -35,9 +35,9 @@
       </main>
 
       <aside class="sidebar">
-        <header class="header" style="position: relative; justify-content: center; padding-top: 3.5rem;">
+        <header class="header" style="position: relative; justify-content: center;">
           <div class="logo header-brand-logo">
-            <div class="player-brand-logo" style="transform: scale(3.5); transform-origin: center;">
+            <div class="player-brand-logo">
               <i data-lucide="radio" class="brand-icon"></i>
               <div class="brand-text">
                 <span class="brand-ortho">ORTHO</span><span class="brand-radio">RADIO</span>
@@ -149,6 +149,17 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- PWA Update Toast -->
+    <div id="pwa-toast" class="pwa-toast hidden" role="alert" aria-labelledby="toast-message">
+      <div class="pwa-toast-message">
+        <span id="toast-message">Υπάρχει νέα έκδοση της εφαρμογής.</span>
+      </div>
+      <div class="pwa-toast-buttons">
+        <button id="pwa-refresh" class="btn-primary pwa-btn">Ανανέωση</button>
+        <button id="pwa-close" class="btn-secondary pwa-btn">Κλείσιμο</button>
       </div>
     </div>
 

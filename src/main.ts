@@ -1,3 +1,4 @@
+import { registerSW } from 'virtual:pwa-register';
 import './style.css';
 import { createIcons, Power, Radio, Settings, X, Heart, ChevronDown, Play, Pause, Search } from 'lucide';
 import { stations, type Station } from './data/stations';
@@ -467,6 +468,20 @@ function playStation(station: Station) {
 
   // Handle audio
   if (isPlaying) audio.pause();
+  
+  if ('mediaSession' in navigator) {
+    const artworkUrl = new URL(station.logoUrl, window.location.href).href;
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: station.name,
+      artist: 'OrthoRadio',
+      album: station.city,
+      artwork: [
+        { src: artworkUrl, sizes: '512x512', type: 'image/jpeg' },
+        { src: artworkUrl, sizes: '192x192', type: 'image/jpeg' }
+      ]
+    });
+  }
+
   audio = corsAudio; // Always try with CORS first
   audio.src = station.streamUrl;
   audio.play().catch(e => {
@@ -609,3 +624,28 @@ closePlayerBtn.addEventListener('click', () => {
 
 // App Startup app
 init();
+
+
+// PWA Update Logic
+const pwaToast = document.getElementById('pwa-toast');
+const pwaRefreshBtn = document.getElementById('pwa-refresh');
+const pwaCloseBtn = document.getElementById('pwa-close');
+
+if (pwaToast && pwaRefreshBtn && pwaCloseBtn) {
+  const updateSW = registerSW({
+    onNeedRefresh() {
+      pwaToast.classList.remove('hidden');
+    },
+    onOfflineReady() {
+      console.log('App ready to work offline');
+    },
+  });
+
+  pwaRefreshBtn.addEventListener('click', () => {
+    updateSW(true);
+  });
+
+  pwaCloseBtn.addEventListener('click', () => {
+    pwaToast.classList.add('hidden');
+  });
+}
