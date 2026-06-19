@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/orthoradio-favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OrthoRadio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <main class="main-content">
+        <div class="search-container">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="station-search" class="search-input" placeholder="Αναζήτηση σταθμού..." autocomplete="off" />
+        </div>
+
+        <section id="favorites-section" class="stations-section hidden">
+          <h2 class="section-title">Αγαπημένα</h2>
+          <div id="favorites-container" class="favorites-container">
+            <!-- Favorite stations dynamically injected here -->
+          </div>
+        </section>
+
+        <section class="stations-section">
+          <h2 class="section-title">Όλοι οι Σταθμοί</h2>
+          <div id="station-grid" class="station-grid">
+            <!-- Stations will be dynamically injected here -->
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar">
+        <header class="header" style="position: relative; justify-content: center; padding-top: 3.5rem;">
+          <div class="logo header-brand-logo">
+            <div class="player-brand-logo" style="transform: scale(3.5); transform-origin: center;">
+              <i data-lucide="radio" class="brand-icon"></i>
+              <div class="brand-text">
+                <span class="brand-ortho">ORTHO</span><span class="brand-radio">RADIO</span>
+              </div>
+            </div>
+          </div>
+          <button id="settings-btn" class="icon-btn" aria-label="Settings" style="display: none;">
+            <i data-lucide="settings"></i>
+          </button>
+        </header>
+
+        <!-- Watermark for Desktop Sidebar -->
+        <div class="sidebar-watermark"></div>
+
+        <!-- Sticky Audio Player (80s Hi-Fi Layout) -->
+        <div id="player-container" class="player-container hidden">
+          <div class="radio-body">
+            <button id="close-player-btn" class="close-player-btn" aria-label="Minimize Player">
+              <i data-lucide="chevron-down"></i>
+            </button>
+            
+            <div class="hifi-faceplate">
+              
+              <!-- Tier 1: Massive VFD Screen -->
+              <div class="radio-screen vfd-glow">
+                <div class="screen-content">
+                  <img id="player-station-logo" src="" alt="Station Logo" class="player-logo hidden">
+                  <div class="now-playing-info">
+                    <div class="title-area">
+                      <h3 id="player-station-name">Station Name</h3>
+                      <h3 id="player-now-playing" class="hidden"></h3>
+                    </div>
+                    <p id="player-station-city" class="city-line">City</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tier 2: VU Meters -->
+              <div class="vu-meters-wrapper">
+                <div class="vu-meter-container large waves-style">
+                  <div class="vu-scale">
+                    <span>-20</span><span>-10</span><span>0</span><span>+3</span>
+                  </div>
+                  <div class="vu-arc"></div>
+                  <div class="vu-label">L</div>
+                  <div class="vu-needle" id="vu-needle-l"></div>
+                </div>
+                
+                <div class="vu-meter-container large waves-style">
+                  <div class="vu-scale">
+                    <span>-20</span><span>-10</span><span>0</span><span>+3</span>
+                  </div>
+                  <div class="vu-arc"></div>
+                  <div class="vu-label">R</div>
+                  <div class="vu-needle" id="vu-needle-r"></div>
+                </div>
+              </div>
+
+              <!-- Tier 3: 80s Controls Row -->
+              <div class="controls-row">
+                <div class="control-group">
+                  <div class="power-led" id="power-led"></div>
+                  <button id="play-pause-btn" class="metallic-button" aria-label="Play/Pause">
+                    <i data-lucide="play" class="play-icon"></i>
+                    <i data-lucide="pause" class="pause-icon" style="display: none;"></i>
+                  </button>
+                  <span class="control-label">PLAY/PAUSE</span>
+                </div>
+                
+
+                <div class="player-brand-logo" id="brand-logo">
+                  <i data-lucide="radio" class="brand-icon"></i>
+                  <div class="brand-text">
+                    <span class="brand-ortho">ORTHO</span><span class="brand-radio">RADIO</span>
+                  </div>
+                </div>
+                
+                <div class="spacer"></div>
+                
+                <div class="control-group volume-group">
+                  <div class="rotary-knob large-knob silver" id="volume-knob" style="transform: rotate(135deg)">
+                    <div class="knob-indicator"></div>
+                  </div>
+                  <span class="control-label">VOLUME</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Ρυθμίσεις</h2>
+          <button id="close-settings-btn" class="icon-btn" aria-label="Close">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-item">
+            <label for="color-picker">Χρώμα Εμφάνισης (Accent Color)</label>
+            <div class="color-picker-wrapper">
+              <input type="color" id="color-picker" value="#d4af37" />
+              <button id="reset-color-btn" class="btn-secondary">Επαναφορά</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

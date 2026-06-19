@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0a8" />
+      <stop offset="50%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#8a7322" />
+    </linearGradient>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#050814" />
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="url(#bg)"/>
+  
+  <!-- Left Inner Wave -->
+  <path d="M 88 82 A 40 40 0 0 0 88 162" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+  <!-- Right Inner Wave -->
+  <path d="M 168 82 A 40 40 0 0 1 168 162" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round" opacity="0.9"/>
+  
+  <!-- Left Outer Wave -->
+  <path d="M 58 52 A 80 80 0 0 0 58 192" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round" opacity="0.5"/>
+  <!-- Right Outer Wave -->
+  <path d="M 198 52 A 80 80 0 0 1 198 192" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Cross -->
+  <!-- Vertical Bar -->
+  <rect x="116" y="46" width="24" height="164" rx="6" fill="url(#gold)"/>
+  <!-- Horizontal Bar -->
+  <rect x="66" y="110" width="124" height="24" rx="6" fill="url(#gold)"/>
+</svg>
