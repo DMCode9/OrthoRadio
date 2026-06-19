@@ -286,6 +286,16 @@ function setupEventListeners() {
   });
   
   // Volume Knob Drag Logic (Rotary Touch)
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  
+  if (isIOS) {
+    const volumeGroup = document.querySelector('.volume-group') as HTMLElement;
+    if (volumeGroup) {
+      volumeGroup.style.opacity = '0.3';
+      volumeGroup.style.pointerEvents = 'none';
+    }
+  }
+
   let isDraggingVolume = false;
   let knobCenterX = 0;
   let knobCenterY = 0;
