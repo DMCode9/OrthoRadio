@@ -82,6 +82,22 @@ body::after {
   100% { transform: translate(-20vw, -50vh) scale(1.3); }
 }
 
+@media (max-width: 768px) {
+  body::before, body::after {
+    filter: blur(60px); /* Μικρότερο blur στα κινητά για να μην εξαφανίζονται τα χρώματα */
+  }
+  body::before {
+    width: 80vw;
+    height: 80vw;
+    background: rgba(255, 205, 80, 0.25); /* Ελαφρώς πιο έντονο στα κινητά */
+  }
+  body::after {
+    width: 70vw;
+    height: 70vw;
+    background: rgba(56, 189, 248, 0.35); /* Ελαφρώς πιο έντονο στα κινητά */
+  }
+}
+
 #app {
   max-width: 1200px;
   margin: 0 auto;
@@ -265,8 +281,7 @@ body::after {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-top: 1px solid rgba(212, 175, 55, 0.6);
-  box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.2);
-  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 175, 55, 0.2);
 }
 
 .station-card.active::before {
@@ -1086,6 +1101,8 @@ body::after {
     padding: 0.5rem;
     gap: 0.5rem;
     border-radius: 10px;
+    aspect-ratio: auto;
+    height: 100%;
   }
 
   .station-card-logo {

@@ -285,26 +285,41 @@ function setupEventListeners() {
     togglePlay();
   });
   
-  // Volume Knob Drag Logic
+  // Volume Knob Drag Logic (Rotary Touch)
   let isDraggingVolume = false;
-  let startY = 0;
-  let startVol = 1;
+  let knobCenterX = 0;
+  let knobCenterY = 0;
 
-  const onVolumeStart = (e: Event, clientY: number) => {
+  const onVolumeStart = (e: Event, clientX: number, clientY: number) => {
     e.preventDefault();
     isDraggingVolume = true;
-    startY = clientY;
-    startVol = audio.volume;
+    const rect = volumeKnob.getBoundingClientRect();
+    knobCenterX = rect.left + rect.width / 2;
+    knobCenterY = rect.top + rect.height / 2;
     document.body.style.userSelect = 'none'; // Prevent text selection
+    
+    updateVolumeFromPosition(clientX, clientY);
   };
 
-  const onVolumeMove = (e: Event, clientY: number) => {
+  const onVolumeMove = (e: Event, clientX: number, clientY: number) => {
     if (!isDraggingVolume) return;
     e.preventDefault();
-    const deltaY = startY - clientY;
-    // Less sensitive: 200px drag for full volume range
-    let newVol = startVol + (deltaY / 200);
+    updateVolumeFromPosition(clientX, clientY);
+  };
+
+  const updateVolumeFromPosition = (clientX: number, clientY: number) => {
+    let atanAngle = Math.atan2(clientY - knobCenterY, clientX - knobCenterX) * (180 / Math.PI);
+    let cssAngle = atanAngle + 90;
+    
+    if (cssAngle > 180) cssAngle -= 360;
+    
+    // Handle the dead zone at the bottom
+    if (cssAngle > 135) cssAngle = 135;
+    if (cssAngle < -135) cssAngle = -135;
+    
+    let newVol = (cssAngle + 135) / 270;
     newVol = Math.max(0, Math.min(1, newVol));
+    
     corsAudio.volume = newVol;
     fallbackAudio.volume = newVol;
     updateKnobRotation();
@@ -315,13 +330,13 @@ function setupEventListeners() {
     document.body.style.userSelect = '';
   };
 
-  volumeKnob.addEventListener('mousedown', (e) => onVolumeStart(e, e.clientY));
-  window.addEventListener('mousemove', (e) => onVolumeMove(e, e.clientY), { passive: false });
+  volumeKnob.addEventListener('mousedown', (e) => onVolumeStart(e, e.clientX, e.clientY));
+  window.addEventListener('mousemove', (e) => onVolumeMove(e, e.clientX, e.clientY), { passive: false });
   window.addEventListener('mouseup', onVolumeEnd);
 
   // Touch support for mobile
-  volumeKnob.addEventListener('touchstart', (e) => onVolumeStart(e, e.touches[0].clientY), { passive: false });
-  window.addEventListener('touchmove', (e) => onVolumeMove(e, e.touches[0].clientY), { passive: false });
+  volumeKnob.addEventListener('touchstart', (e) => onVolumeStart(e, e.touches[0].clientX, e.touches[0].clientY), { passive: false });
+  window.addEventListener('touchmove', (e) => onVolumeMove(e, e.touches[0].clientX, e.touches[0].clientY), { passive: false });
   window.addEventListener('touchend', onVolumeEnd);
 
   // Mouse wheel support for Desktop
