@@ -32,7 +32,7 @@ body {
   background-color: #050814; /* Πολύ σκούρη βάση */
   color: var(--color-text);
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   position: relative;
   overflow-x: hidden;
@@ -87,7 +87,7 @@ body::after {
   margin: 0 auto;
   padding-bottom: 2rem;
   display: flex;
-  flex-direction: column-reverse; /* For mobile: main on bottom, sidebar(header) on top */
+  flex-direction: column; /* Normal order */
 }
 
 .main-content {
@@ -1057,7 +1057,7 @@ body::after {
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    padding: 1rem 1.5rem;
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) 1.5rem 1rem 1.5rem;
     margin-bottom: 0;
   }
 
@@ -1135,6 +1135,7 @@ body::after {
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
     padding: 0.5rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
     border: 3px solid #3d220e;
     border-bottom: none;
     box-shadow: inset 0 2px 5px rgba(255,255,255,0.1);
@@ -1184,9 +1185,13 @@ body::after {
 
   .main-content {
     padding-bottom: 2rem; /* Remove mobile floating player padding */
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .sidebar {
+    grid-column: 2;
+    grid-row: 1;
     position: sticky;
     top: 0;
     align-self: start;
@@ -1286,7 +1291,7 @@ body::after {
 /* Smartphone adjustments */
 @media (max-width: 768px) {
   .header {
-    padding-top: 1rem; /* Smaller padding from top */
+    padding-top: calc(1rem + env(safe-area-inset-top, 0px)); /* Smaller padding + safe area */
   }
   .header-brand-logo .player-brand-logo {
     flex-direction: row;

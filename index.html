@@ -11,27 +11,6 @@
   </head>
   <body>
     <div id="app">
-      <main class="main-content">
-        <div class="search-container">
-          <i data-lucide="search" class="search-icon"></i>
-          <input type="text" id="station-search" class="search-input" placeholder="Αναζήτηση σταθμού..." autocomplete="off" />
-        </div>
-
-        <section id="favorites-section" class="stations-section hidden">
-          <h2 class="section-title">Αγαπημένα</h2>
-          <div id="favorites-container" class="favorites-container">
-            <!-- Favorite stations dynamically injected here -->
-          </div>
-        </section>
-
-        <section class="stations-section">
-          <h2 class="section-title">Όλοι οι Σταθμοί</h2>
-          <div id="station-grid" class="station-grid">
-            <!-- Stations will be dynamically injected here -->
-          </div>
-        </section>
-      </main>
-
       <aside class="sidebar">
         <header class="header" style="position: relative; justify-content: center;">
           <div class="logo header-brand-logo">
@@ -127,6 +106,27 @@
           </div>
         </div>
       </aside>
+
+      <main class="main-content">
+        <div class="search-container">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="station-search" class="search-input" placeholder="Αναζήτηση σταθμού..." autocomplete="off" />
+        </div>
+
+        <section id="favorites-section" class="stations-section hidden">
+          <h2 class="section-title">Αγαπημένα</h2>
+          <div id="favorites-container" class="favorites-container">
+            <!-- Favorite stations dynamically injected here -->
+          </div>
+        </section>
+
+        <section class="stations-section">
+          <h2 class="section-title">Όλοι οι Σταθμοί</h2>
+          <div id="station-grid" class="station-grid">
+            <!-- Stations will be dynamically injected here -->
+          </div>
+        </section>
+      </main>
     </div>
 
     <!-- Settings Modal -->
