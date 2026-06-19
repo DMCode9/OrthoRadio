@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=VT323&display=swap');
-
 :root {
   /* Default Colors */
   --color-bg: #0f172a;
@@ -107,7 +105,7 @@ body::after {
 }
 
 .main-content {
-  padding-bottom: 280px; /* Space to scroll past the fixed floating player */
+  padding-bottom: 190px; /* Space to scroll past the fixed floating player on mobile + extra gap */
 }
 
 .sidebar-watermark {
@@ -246,6 +244,8 @@ body::after {
   border-radius: 16px;
   padding: 1.5rem;
   display: flex;
+  content-visibility: auto;
+  contain-intrinsic-size: 200px 200px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -632,14 +632,17 @@ body::after {
 
 .title-area h3.marquee {
   animation: scrollText 6s linear infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @keyframes scrollText {
   0%, 15% {
-    transform: translateX(0);
+    transform: translateX(0) translateZ(0);
   }
   85%, 100% {
-    transform: translateX(calc(100cqi - 100%));
+    transform: translateX(calc(100cqi - 100%)) translateZ(0);
   }
 }
 
@@ -1056,7 +1059,7 @@ body::after {
 /* Responsive (Mobile and Tablet Layout) */
 @media (max-width: 1023px) {
   #app {
-    padding-bottom: 120px; /* Space for the floating player */
+    padding-bottom: 0;
   }
 
   .sidebar {
