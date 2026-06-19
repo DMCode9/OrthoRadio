@@ -543,7 +543,6 @@ body::after {
   font-family: 'VT323', monospace;
   letter-spacing: 2px;
   width: 100%;
-  animation: vfd-pulse 0.15s infinite alternate;
 }
 
 @keyframes vfd-pulse {
