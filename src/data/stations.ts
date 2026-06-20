@@ -236,7 +236,7 @@ export const stations: Station[] = [
     id: 'lemesos',
     name: 'Ι.Μ. Λεμεσού',
     city: 'Λεμεσός',
-    streamUrl: 'http://93.109.209.123:9080/stream.mp3',
+    streamUrl: 'https://free.rcast.net/69963/',
     logoUrl: './lemesos.png'
   },
   {
