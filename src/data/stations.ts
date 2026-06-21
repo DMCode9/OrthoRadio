@@ -302,4 +302,11 @@ export const stations: Station[] = [
     streamUrl: 'https://premium.streams.gr:8029/stream',
     logoUrl: './stegi.png'
   },
+  {
+    id: 'metanoia',
+    name: 'METANOIA RADIO',
+    city: 'Web Radio',
+    streamUrl: 'https://cast.iplayradio.net/listen/metanoia/stream',
+    logoUrl: './metanoia.jpg'
+  },
 ];
