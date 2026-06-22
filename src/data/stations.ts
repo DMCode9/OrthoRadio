@@ -57,13 +57,13 @@ export const stations: Station[] = [
     streamUrl: 'https://cast4.magicstreams.gr:2200/ssl/nantia?mp=/stream&1586890375551',
     logoUrl: './filopoli.jpg'
   },
-  {
+ /* {
     id: 'vamvas',
     name: 'Vamvas 24',
     city: 'Web Radio',
     streamUrl: 'https://stream.radiojar.com/1p608uhyf0nwv',
     logoUrl: './vamvas.png'
-  },
+  },  */
   {
     id: 'agSpyridon',
     name: 'Άγιος Σπυρίδων',
