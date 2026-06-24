@@ -214,7 +214,7 @@ export const stations: Station[] = [
   {
     id: 'pavlioslogos',
     name: 'Παύλειος Λόγος',
-    city: 'Βέρεια',
+    city: 'Βέροια',
     streamUrl: 'https://eco.onestreaming.com/proxy/pavleioslogos/stream',
     logoUrl: './pavlioslogos.png'
   },
