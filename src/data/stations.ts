@@ -309,4 +309,11 @@ export const stations: Station[] = [
     streamUrl: 'https://cast.iplayradio.net/listen/metanoia/stream',
     logoUrl: './metanoia.jpg'
   },
+  {
+    id: 'ero',
+    name: 'Ε.ΡΩ. - ΡαδιοΣυχνότητα',
+    city: 'Web Radio',
+    streamUrl: 'https://play.radioking.io/ero-radiosixnotita',
+    logoUrl: './ero.jpg'
+  },
 ];
